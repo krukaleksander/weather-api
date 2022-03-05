@@ -20,7 +20,14 @@ export const WeatherBitService = async (lat: string, lon: string) => {
       pres: pressure,
       wind_spd: windSpeed,
     } = data.data[0];
-    return { status: 'ok', temperature, humidity, pressure, windSpeed };
+    return {
+      status: 'ok',
+      temperature,
+      humidity,
+      pressure,
+      windSpeed,
+      source: 'Weatherbit',
+    };
   } catch (error) {
     return { error };
   }

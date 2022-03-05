@@ -27,7 +27,14 @@ export const VisualCrossingService = async (lat: string, lon: string) => {
       sealevelpressure: pressure,
       wspd: windSpeed,
     } = locations.values[0];
-    return { status: 'ok', temperature, humidity, pressure, windSpeed };
+    return {
+      status: 'ok',
+      temperature,
+      humidity,
+      pressure,
+      windSpeed,
+      source: 'Visual Crossing Weather',
+    };
   } catch (error) {
     return { error };
   }

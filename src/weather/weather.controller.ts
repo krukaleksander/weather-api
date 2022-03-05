@@ -8,7 +8,6 @@ export class WeatherController {
 
   @Get('/')
   getWeather(@Body() dto: WeatherDto) {
-    console.log({ dto });
-    return this.weatherService.getWeather();
+    return this.weatherService.getWeather(dto);
   }
 }

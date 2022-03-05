@@ -29,13 +29,13 @@ export const VisualCrossingService = async (lat: string, lon: string) => {
     } = locations.values[0];
     return {
       status: 'ok',
-      temperature,
-      humidity,
-      pressure,
-      windSpeed,
+      temperature: { value: temperature, unit: 'Celsius' },
+      humidity: { value: humidity, unit: null },
+      pressure: { value: pressure, unit: 'millibars' },
+      windSpeed: { value: windSpeed, unit: 'kilometer per hour ' },
       source: 'Visual Crossing Weather',
     };
   } catch (error) {
-    return { error };
+    return { status: 'error', error };
   }
 };

@@ -1,4 +1,13 @@
 describe('#GET example', () => {
+  const resultKeys = [
+    'status',
+    'temperature',
+    'humidity',
+    'pressure',
+    'windSpeed',
+    'source',
+  ];
+
   it('returns weather data from Weatherbit', () => {
     // given
     apiIsAvailable();
@@ -7,26 +16,8 @@ describe('#GET example', () => {
     const request = getWeatherData(false);
 
     //then
-    resultIs(request, {
-      status: 'ok',
-      temperature: {
-        value: 3.3,
-        unit: 'Celsius',
-      },
-      humidity: {
-        value: 44.6334,
-        unit: null,
-      },
-      pressure: {
-        value: 1014.04,
-        unit: 'millibars',
-      },
-      windSpeed: {
-        value: 2.08848,
-        unit: 'kilometer per hour ',
-      },
-      source: 'Weatherbit',
-    });
+
+    resultIs(request, resultKeys);
   });
   it('returns weather data from Visual Crossing Weather', () => {
     // given
@@ -36,30 +27,11 @@ describe('#GET example', () => {
     const request = getWeatherData(true);
 
     //then
-    resultIs(request, {
-      status: 'ok',
-      temperature: {
-        value: 0.6,
-        unit: 'Celsius',
-      },
-      humidity: {
-        value: 56.3,
-        unit: null,
-      },
-      pressure: {
-        value: 1025.5,
-        unit: 'millibars',
-      },
-      windSpeed: {
-        value: 5.4,
-        unit: 'kilometer per hour ',
-      },
-      source: 'Visual Crossing Weather',
-    });
+    resultIs(request, resultKeys);
   });
 });
 
-const requestBody = {
+const coordinates = {
   lat: '52.229675',
   lon: '21.012230',
 };
@@ -70,35 +42,16 @@ function getWeatherData(
   alternateSource: boolean,
 ): Cypress.Chainable<Cypress.Response<any>> {
   return cy.request('GET', `http://localhost:3333/current_weather`, {
-    ...requestBody,
+    ...coordinates,
     alternateSource,
   });
 }
 
 async function resultIs(
   request: Cypress.Chainable<Cypress.Response<any>>,
-  result: {
-    status: string;
-    temperature: {
-      value: number;
-      unit: string;
-    };
-    humidity: {
-      value: number;
-      unit: null;
-    };
-    pressure: {
-      value: number;
-      unit: string;
-    };
-    windSpeed: {
-      value: number;
-      unit: string;
-    };
-    source: string;
-  },
+  resultKeys: string[],
 ) {
   request.should((response) => {
-    expect(response.body).to.eql(result);
+    expect(response.body).to.have.keys(resultKeys);
   });
 }

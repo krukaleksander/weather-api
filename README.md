@@ -1,25 +1,22 @@
 # Weather Api
 
-## Zadanie
+This api was made due a participation in El Passion workshop. Thank you for that experience!
 
-Napisz aplikację dostarczającą dane o pogodzie
+- The application issues an endpoint `#GET / current_weather` which takes the parameters` lat`, `lon` and` alternateSource: boolean`.
 
-- Aplikacja wystawia endpoint `#GET /current_weather` który przyjmuje parametry `lat`, `lon` i `alternateSource: boolean`.
+- API in the above endpoint returns the current weather data for the given coordinates:
 
-- Aplikacja w powyższym endpoint'cie zwraca aktualne dane o pogodzie dla podanych współrzędnych - przynajmniej temperaturę, ciśnienie i wilgotność, oraz informację jakie źródło danych zostało użyte
+* temperature,
+* pressure
+* humidity,
+* wind speed
+* information about the data source used.
 
-- W zależności od wartości `alternateSource` aplikacja ma korzystać z 2 różnych źródeł danych. np. API internetowych
+- Depending on the value of `alternateSource`, the application uses 2 different data sources. In case of false it is Weatherbit, if it's true - Visual Crossing Weather.
 
-- Korzystając z obu źródeł danych endpoint ma mieć ten sam interfejs tj. Jeżeli zwraca tylko temperaturę, ciśnienie i wilgotność przy używaniu źródła A takie same powinien zwrócić ze źródła B. Jeżeli przy danych ze źródła A temperatura jest zwracana w ‘C po przełączeniu nadal ma się tak zwracać niezależnie czy ze źródła B przychodzi w ‘C czy nie
+## Word about the tests
 
-Wskazówki
-
-- Przykładowe API z których mogą pochodzić dane: https://rapidapi.com/blog/access-global-weather-data-with-these-weather-apis/
-- Nie zostawiaj w repozytorium kluczy prywatnych do API. Skorzystaj ze zmiennych środowiskowych. ENVów.
-- Zapoznaj się z wzorcem projektowym ["Adapter"](https://refactoring.guru/pl/design-patterns/adapter) [(przykład)](https://refactoring.guru/pl/design-patterns/adapter/typescript/example). Może Ci on pomóc w lepszym poukładaniu kodu w aplikacji.
-- Pamiętaj o testach :). Testy znajdują się w folderze cypress/integration. Wraz z przykładowym testem `example.ts`.
-- Żeby testy przechodziły pamiętaj, że musi być włączony serwer ponieważ są to testy e2e.
-- Zapoznaj się z tym jak kodować w Nest'cie poniżej.
+APIs that I use every hour or even more often return different values. So I couldn't run tests that examine these specific values, because each time I would have to check what api returns first. So I decided to check if the response object has properties, because if it has it means that the response is correct.
 
 ## Description
 

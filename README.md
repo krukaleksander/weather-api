@@ -2,17 +2,17 @@
 
 This api was made due a participation in El Passion workshop. Thank you for that experience!
 
-- The application issues an endpoint `#GET / current_weather` which takes the parameters` lat`, `lon` and` alternateSource: boolean`.
+The application issues an endpoint `#GET / current_weather` which takes the parameters` lat`, `lon` and` alternateSource: boolean`.
 
-- API in the above endpoint returns the current weather data for the given coordinates:
+API in the above endpoint returns the current weather data for the given coordinates:
 
-* temperature,
-* pressure
-* humidity,
-* wind speed
-* information about the data source used.
+- temperature,
+- pressure
+- humidity,
+- wind speed
+- information about the data source used.
 
-- Depending on the value of `alternateSource`, the application uses 2 different data sources. In case of false it is Weatherbit, if it's true - Visual Crossing Weather.
+Depending on the value of `alternateSource`, the application uses 2 different data sources. In case of false it is Weatherbit, if it's true - Visual Crossing Weather.
 
 ## Word about the tests
 
